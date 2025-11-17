@@ -27,7 +27,13 @@ class AuthService:
         refresh = RefreshToken.for_user(user)
 
         return {
-            'refresh': str(refresh),
             'access': str(refresh.access_token)
         }
     
+    def refresh_token(refresh_token):
+        try:
+            refresh = RefreshToken(refresh_token)
+            return refresh
+        
+        except Exception:
+            raise ValidationError("Invalid refresh token")

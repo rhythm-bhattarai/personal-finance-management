@@ -1,5 +1,6 @@
 from . import views
 from rest_framework.routers import DefaultRouter
+from django.urls import path
 
 router = DefaultRouter()
 
@@ -18,4 +19,4 @@ router.register(r'users', views.UserViewSet)
 # POST	    /users/login/	  login
 #--------------------------------------------
 
-urlpatterns = router.urls
+urlpatterns = router.urls + [path('auth/refresh/', views.RefreshTokenView.as_view(), name='token_refresh')]
